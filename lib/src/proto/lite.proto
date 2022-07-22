@@ -1,0 +1,64 @@
+syntax = "proto3";
+package pb;
+option go_package = "./pb";
+
+enum PushEvent {
+  receiveMsg = 0;
+  updateConv = 1;
+}
+
+message PushBody {
+  PushEvent event = 1;
+  bytes data = 2;
+}
+
+message ConvData {
+  string convId = 1;
+  uint32 maxSeq = 2;
+  uint32 minSeq = 3;
+  uint32 unreadCount = 4;
+}
+
+message ConvDataList {
+  repeated ConvData list = 1;
+}
+
+message PullMsg {
+  string convId = 1;
+  repeated uint32 seqList = 2;
+}
+
+message PullMsgList {
+  repeated PullMsg list = 1;
+}
+
+message MsgData {
+  string clientMsgID = 1;
+  string serverMsgID = 2;
+  string senderID = 3;
+  string convID = 4;
+  int32 contentType = 5;
+  bytes content = 6;
+  int64 clientTime = 7;
+  int64 serverTime = 8;
+  uint32 seq = 9;
+  OfflinePush offlinePush = 10;
+  MsgOptions msgOptions = 11;
+}
+
+message MsgDataList {
+  repeated MsgData list = 1;
+}
+
+message OfflinePush{
+  string title = 1;
+  string desc = 2;
+  string ex = 3;
+  string iOSPushSound = 4;
+  bool iOSBadgeCount = 5;
+}
+
+message MsgOptions{
+  bool storage = 1;
+  bool unread = 2;
+}
