@@ -31,9 +31,6 @@
              // 拉取会话错误
            }
          },
-         onUpdateConv: () {
-           // 更新会话
-         },
        ),
        receiveMsgListener: ReceiveMsgListener(
          onPullMsg: (msgList) {

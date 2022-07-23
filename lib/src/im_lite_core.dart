@@ -35,9 +35,9 @@ class IMLiteCore {
       receiveMsgListener: receiveMsgListener,
     );
     _liteSocket = LiteSocket(
+      liteHttp: _liteHttp!,
       wsUrl: wsUrl,
       connectListener: connectListener,
-      receiveConvListener: receiveConvListener,
       receiveMsgListener: receiveMsgListener,
     );
   }
@@ -47,8 +47,11 @@ class IMLiteCore {
     required String token,
     required String userID,
   }) async {
-    _liteHttp?.connect(token: token, userID: userID);
-    await _liteSocket?.connect(token: token, userID: userID);
+    _liteHttp?.connect(token: token);
+    await _liteSocket?.connect(
+      token: token,
+      userID: userID,
+    );
   }
 
   /// 登出
@@ -61,7 +64,7 @@ class IMLiteCore {
   bool isLogin() {
     bool http = _liteHttp?.isConnect() ?? false;
     bool socket = _liteSocket?.isConnect() ?? false;
-    return http || socket;
+    return http && socket;
   }
 
   /// 拉取会话

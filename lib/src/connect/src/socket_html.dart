@@ -1,16 +1,16 @@
 import 'dart:html';
 
 class BaseWebSocket {
+  final Function(dynamic data) onData;
   final Function() onConnecting;
   final Function() onSuccess;
-  final Function(dynamic data) onData;
   final Function(dynamic error) onError;
   final Function() onClose;
 
   BaseWebSocket({
+    required this.onData,
     required this.onConnecting,
     required this.onSuccess,
-    required this.onData,
     required this.onError,
     required this.onClose,
   });
@@ -25,18 +25,12 @@ class BaseWebSocket {
       _webSocket = WebSocket(url)
         ..onOpen.listen(
           onData,
-          onError: (error) {
-            onError(error);
-          },
-          onDone: () async {
-            await disconnect();
-            onClose();
-          },
+          onError: onError,
+          onDone: onClose,
           cancelOnError: true,
         );
       onSuccess();
     } catch (_) {
-      await disconnect();
       onClose();
     }
   }
@@ -51,8 +45,7 @@ class BaseWebSocket {
   }
 
   void sendData(dynamic data) {
-    try {
-      _webSocket?.send(data);
-    } catch (_) {}
+    if (!isConnect()) return;
+    _webSocket?.send(data);
   }
 }

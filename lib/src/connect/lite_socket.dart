@@ -1,6 +1,6 @@
+import 'package:im_lite_core_flutter/src/connect/lite_http.dart';
 import 'package:im_lite_core_flutter/src/connect/protocol.dart';
 import 'package:im_lite_core_flutter/src/listener/connect_listener.dart';
-import 'package:im_lite_core_flutter/src/listener/receive_conv_listener.dart';
 import 'package:im_lite_core_flutter/src/listener/receive_msg_listener.dart';
 import 'package:im_lite_core_flutter/src/proto/lite.pb.dart';
 import 'src/socket_none.dart'
@@ -8,15 +8,15 @@ import 'src/socket_none.dart'
     if (dart.library.io) 'src/socket_io.dart';
 
 class LiteSocket {
+  final LiteHttp liteHttp;
   final String wsUrl;
   final ConnectListener? connectListener;
-  final ReceiveConvListener? receiveConvListener;
   final ReceiveMsgListener? receiveMsgListener;
 
   LiteSocket({
+    required this.liteHttp,
     required this.wsUrl,
     this.connectListener,
-    this.receiveConvListener,
     this.receiveMsgListener,
   });
 
@@ -27,17 +27,19 @@ class LiteSocket {
     required String userID,
   }) async {
     _webSocket = BaseWebSocket(
+      onData: _onData,
       onConnecting: () {
         connectListener?.connecting();
       },
       onSuccess: () {
         connectListener?.success();
       },
-      onData: _onData,
       onError: (error) {
         connectListener?.error(error);
       },
-      onClose: () {
+      onClose: () async {
+        liteHttp.disconnect();
+        await disconnect();
         connectListener?.close();
       },
     )..connect(
@@ -55,10 +57,8 @@ class LiteSocket {
   }
 
   Future disconnect() async {
-    if (isConnect()) {
-      await _webSocket!.disconnect();
-      _webSocket = null;
-    }
+    await _webSocket?.disconnect();
+    _webSocket = null;
   }
 
   bool isConnect() {
@@ -73,7 +73,7 @@ class LiteSocket {
       );
       receiveMsgListener?.pushMsg(msg);
     } else if (body.event == PushEvent.updateConv) {
-      receiveConvListener?.updateConv();
+      liteHttp.pullConvList();
     }
   }
 }

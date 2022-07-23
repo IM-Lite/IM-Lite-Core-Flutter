@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:im_lite_core_flutter/src/connect/protocol.dart';
 import 'package:im_lite_core_flutter/src/listener/receive_conv_listener.dart';
@@ -16,10 +17,10 @@ class LiteHttp {
   });
 
   Dio? _dio;
+  Timer? _timer;
 
   void connect({
     required String token,
-    required String userID,
   }) {
     _dio = Dio(
       BaseOptions(
@@ -30,9 +31,18 @@ class LiteHttp {
         responseType: ResponseType.bytes,
       ),
     );
+    pullConvList();
+    _timer = Timer.periodic(
+      const Duration(seconds: 30),
+      (timer) {
+        pullConvList();
+      },
+    );
   }
 
   void disconnect() {
+    _timer?.cancel();
+    _timer = null;
     _dio?.close(force: true);
     _dio = null;
   }
@@ -46,9 +56,7 @@ class LiteHttp {
       path: Protocol.pullConvList,
       method: "post",
       onSuccess: (data) {
-        ConvDataList convList = ConvDataList.fromBuffer(
-          data,
-        );
+        ConvDataList convList = ConvDataList.fromBuffer(data);
         receiveConvListener?.pullConv(convList);
       },
       onError: (error) {
@@ -68,9 +76,7 @@ class LiteHttp {
         bytes.map((e) => [e]),
       ),
       onSuccess: (data) {
-        MsgDataList msgList = MsgDataList.fromBuffer(
-          data,
-        );
+        MsgDataList msgList = MsgDataList.fromBuffer(data);
         receiveMsgListener?.pullMsg(msgList);
       },
       onError: (error) {
@@ -108,6 +114,7 @@ class LiteHttp {
     Function(dynamic data)? onSuccess,
     Function(String? error)? onError,
   }) async {
+    if (!isConnect()) return;
     Response? response;
     try {
       response = await _dio?.request(
