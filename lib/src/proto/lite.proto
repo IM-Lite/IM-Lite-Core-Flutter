@@ -56,6 +56,7 @@ message OfflinePush{
   string ex = 3;
   string iOSPushSound = 4;
   bool iOSBadgeCount = 5;
+  repeated string userIDs = 6;
 }
 
 message MsgOptions{

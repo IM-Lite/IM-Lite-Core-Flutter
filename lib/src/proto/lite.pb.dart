@@ -933,6 +933,12 @@ class OfflinePush extends $pb.GeneratedMessage {
             ? ''
             : 'iOSBadgeCount',
         protoName: 'iOSBadgeCount')
+    ..pPS(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'userIDs',
+        protoName: 'userIDs')
     ..hasRequiredFields = false;
 
   OfflinePush._() : super();
@@ -943,6 +949,7 @@ class OfflinePush extends $pb.GeneratedMessage {
     $core.String? ex,
     $core.String? iOSPushSound,
     $core.bool? iOSBadgeCount,
+    $core.Iterable<$core.String>? userIDs,
   }) {
     final _result = create();
     if (title != null) {
@@ -959,6 +966,9 @@ class OfflinePush extends $pb.GeneratedMessage {
     }
     if (iOSBadgeCount != null) {
       _result.iOSBadgeCount = iOSBadgeCount;
+    }
+    if (userIDs != null) {
+      _result.userIDs.addAll(userIDs);
     }
     return _result;
   }
@@ -1065,6 +1075,9 @@ class OfflinePush extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   void clearIOSBadgeCount() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.String> get userIDs => $_getList(5);
 }
 
 class MsgOptions extends $pb.GeneratedMessage {

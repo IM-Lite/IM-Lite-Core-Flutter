@@ -64,7 +64,7 @@
 ## 拉取消息
 
      PullMsg pull = PullMsg(
-       convId: "",
+       convID: "",
        seqList: [],
      );
      PullMsgList pullList = PullMsgList(
@@ -87,6 +87,7 @@
          ex: "",
          iOSPushSound: "+1",
          iOSBadgeCount: true,
+         userIDs: [], // 指定推送用户
        ),
        msgOptions: MsgOptions(
          storage: true, // 消息是否存储

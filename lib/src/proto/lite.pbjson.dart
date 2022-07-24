@@ -164,12 +164,13 @@ const OfflinePush$json = const {
     const {'1': 'ex', '3': 3, '4': 1, '5': 9, '10': 'ex'},
     const {'1': 'iOSPushSound', '3': 4, '4': 1, '5': 9, '10': 'iOSPushSound'},
     const {'1': 'iOSBadgeCount', '3': 5, '4': 1, '5': 8, '10': 'iOSBadgeCount'},
+    const {'1': 'userIDs', '3': 6, '4': 3, '5': 9, '10': 'userIDs'},
   ],
 };
 
 /// Descriptor for `OfflinePush`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List offlinePushDescriptor = $convert.base64Decode(
-    'CgtPZmZsaW5lUHVzaBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZGVzYxIOCgJleBgDIAEoCVICZXgSIgoMaU9TUHVzaFNvdW5kGAQgASgJUgxpT1NQdXNoU291bmQSJAoNaU9TQmFkZ2VDb3VudBgFIAEoCFINaU9TQmFkZ2VDb3VudA==');
+    'CgtPZmZsaW5lUHVzaBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZGVzYxIOCgJleBgDIAEoCVICZXgSIgoMaU9TUHVzaFNvdW5kGAQgASgJUgxpT1NQdXNoU291bmQSJAoNaU9TQmFkZ2VDb3VudBgFIAEoCFINaU9TQmFkZ2VDb3VudBIYCgd1c2VySURzGAYgAygJUgd1c2VySURz');
 @$core.Deprecated('Use msgOptionsDescriptor instead')
 const MsgOptions$json = const {
   '1': 'MsgOptions',
