@@ -1,7 +1,7 @@
 name: im_lite_core_flutter
 description: Easy implementation of chat application based on imlite communication protocol!
-version: 1.0.0
-homepage: https://doc.imlite.cn
+version: 1.0.1
+homepage: https://github.com/IM-Lite/IM-Lite-Core-Flutter
 repository: https://github.com/IM-Lite/IM-Lite-Core-Flutter
 
 environment:
