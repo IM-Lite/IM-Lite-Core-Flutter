@@ -133,8 +133,8 @@ class ConvData extends $pb.GeneratedMessage {
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'convId',
-        protoName: 'convId')
+            : 'convID',
+        protoName: 'convID')
     ..a<$core.int>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -161,14 +161,14 @@ class ConvData extends $pb.GeneratedMessage {
   ConvData._() : super();
 
   factory ConvData({
-    $core.String? convId,
+    $core.String? convID,
     $core.int? maxSeq,
     $core.int? minSeq,
     $core.int? unreadCount,
   }) {
     final _result = create();
-    if (convId != null) {
-      _result.convId = convId;
+    if (convID != null) {
+      _result.convID = convID;
     }
     if (maxSeq != null) {
       _result.maxSeq = maxSeq;
@@ -216,18 +216,18 @@ class ConvData extends $pb.GeneratedMessage {
   static ConvData? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
+  $core.String get convID => $_getSZ(0);
 
   @$pb.TagNumber(1)
-  set convId($core.String v) {
+  set convID($core.String v) {
     $_setString(0, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
+  $core.bool hasConvID() => $_has(0);
 
   @$pb.TagNumber(1)
-  void clearConvId() => clearField(1);
+  void clearConvID() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.int get maxSeq => $_getIZ(1);
@@ -355,8 +355,8 @@ class PullMsg extends $pb.GeneratedMessage {
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'convId',
-        protoName: 'convId')
+            : 'convID',
+        protoName: 'convID')
     ..p<$core.int>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -369,12 +369,12 @@ class PullMsg extends $pb.GeneratedMessage {
   PullMsg._() : super();
 
   factory PullMsg({
-    $core.String? convId,
+    $core.String? convID,
     $core.Iterable<$core.int>? seqList,
   }) {
     final _result = create();
-    if (convId != null) {
-      _result.convId = convId;
+    if (convID != null) {
+      _result.convID = convID;
     }
     if (seqList != null) {
       _result.seqList.addAll(seqList);
@@ -416,18 +416,18 @@ class PullMsg extends $pb.GeneratedMessage {
   static PullMsg? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get convId => $_getSZ(0);
+  $core.String get convID => $_getSZ(0);
 
   @$pb.TagNumber(1)
-  set convId($core.String v) {
+  set convID($core.String v) {
     $_setString(0, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasConvId() => $_has(0);
+  $core.bool hasConvID() => $_has(0);
 
   @$pb.TagNumber(1)
-  void clearConvId() => clearField(1);
+  void clearConvID() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.List<$core.int> get seqList => $_getList(1);
