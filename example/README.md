@@ -9,6 +9,7 @@
      IMLiteCore.instance.init(
        apiUrl: "",
        wsUrl: "",
+       autoPullTime: const Duration(seconds: 30),
        connectListener: ConnectListener(
          onConnecting: () {
            // 连接中

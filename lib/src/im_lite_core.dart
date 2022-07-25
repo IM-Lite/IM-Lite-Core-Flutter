@@ -25,12 +25,14 @@ class IMLiteCore {
   void init({
     required String apiUrl,
     required String wsUrl,
+    Duration autoPullTime = const Duration(seconds: 30),
     ConnectListener? connectListener,
     ReceiveMsgListener? receiveMsgListener,
     ReceiveConvListener? receiveConvListener,
   }) {
     _liteHttp = LiteHttp(
       apiUrl: apiUrl,
+      autoPullTime: autoPullTime,
       receiveConvListener: receiveConvListener,
       receiveMsgListener: receiveMsgListener,
     );

@@ -7,11 +7,13 @@ import 'package:im_lite_core_flutter/src/proto/lite.pb.dart';
 
 class LiteHttp {
   final String apiUrl;
+  final Duration autoPullTime;
   final ReceiveConvListener? receiveConvListener;
   final ReceiveMsgListener? receiveMsgListener;
 
   LiteHttp({
     required this.apiUrl,
+    required this.autoPullTime,
     this.receiveConvListener,
     this.receiveMsgListener,
   });
@@ -33,7 +35,7 @@ class LiteHttp {
     );
     pullConvList();
     _timer = Timer.periodic(
-      const Duration(seconds: 30),
+      autoPullTime,
       (timer) {
         pullConvList();
       },
