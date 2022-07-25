@@ -16,18 +16,18 @@ class BaseWebSocket {
   Future connect({
     required String url,
   }) async {
-    throw "To use sockets you need dart:io or dart:html";
+    throw "To use socket you need dart:io or dart:html";
   }
 
   Future disconnect() {
-    throw "To use sockets you need dart:io or dart:html";
+    throw "To use socket you need dart:io or dart:html";
   }
 
   bool isConnect() {
-    throw "To use sockets you need dart:io or dart:html";
+    throw "To use socket you need dart:io or dart:html";
   }
 
   void sendData(dynamic data) {
-    throw "To use sockets you need dart:io or dart:html";
+    throw "To use socket you need dart:io or dart:html";
   }
 }

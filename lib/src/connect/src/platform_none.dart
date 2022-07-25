@@ -1,13 +1,19 @@
 class BasePlatform {
-  static bool get isWeb => false;
+  static bool get isWeb =>
+      throw "To use platform you need dart:io or dart:html";
 
-  static bool get isIOS => false;
+  static bool get isIOS =>
+      throw "To use platform you need dart:io or dart:html";
 
-  static bool get isAndroid => false;
+  static bool get isAndroid =>
+      throw "To use platform you need dart:io or dart:html";
 
-  static bool get isWindows => false;
+  static bool get isWindows =>
+      throw "To use platform you need dart:io or dart:html";
 
-  static bool get isMacOS => false;
+  static bool get isMacOS =>
+      throw "To use platform you need dart:io or dart:html";
 
-  static bool get isLinux => false;
+  static bool get isLinux =>
+      throw "To use platform you need dart:io or dart:html";
 }

@@ -149,13 +149,6 @@ class ConvData extends $pb.GeneratedMessage {
             : 'minSeq',
         $pb.PbFieldType.OU3,
         protoName: 'minSeq')
-    ..a<$core.int>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'unreadCount',
-        $pb.PbFieldType.OU3,
-        protoName: 'unreadCount')
     ..hasRequiredFields = false;
 
   ConvData._() : super();
@@ -164,7 +157,6 @@ class ConvData extends $pb.GeneratedMessage {
     $core.String? convID,
     $core.int? maxSeq,
     $core.int? minSeq,
-    $core.int? unreadCount,
   }) {
     final _result = create();
     if (convID != null) {
@@ -175,9 +167,6 @@ class ConvData extends $pb.GeneratedMessage {
     }
     if (minSeq != null) {
       _result.minSeq = minSeq;
-    }
-    if (unreadCount != null) {
-      _result.unreadCount = unreadCount;
     }
     return _result;
   }
@@ -256,20 +245,6 @@ class ConvData extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   void clearMinSeq() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.int get unreadCount => $_getIZ(3);
-
-  @$pb.TagNumber(4)
-  set unreadCount($core.int v) {
-    $_setUnsignedInt32(3, v);
-  }
-
-  @$pb.TagNumber(4)
-  $core.bool hasUnreadCount() => $_has(3);
-
-  @$pb.TagNumber(4)
-  void clearUnreadCount() => clearField(4);
 }
 
 class ConvDataList extends $pb.GeneratedMessage {

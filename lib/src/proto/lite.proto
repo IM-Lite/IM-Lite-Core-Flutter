@@ -16,7 +16,6 @@ message ConvData {
   string convID = 1;
   uint32 maxSeq = 2;
   uint32 minSeq = 3;
-  uint32 unreadCount = 4;
 }
 
 message ConvDataList {
