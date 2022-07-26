@@ -64,10 +64,8 @@
      PullMsgList pullList = PullMsgList(
        list: [pull],
      );
-     IMLiteCore.instance.pullMsgList(
+     MsgDataList? msgDataList = await IMLiteCore.instance.pullMsgList(
        pullList: pullList,
-       onSuccess: (msgList) {},
-       onError: (error) {},
      );
 
 ## 发送消息
@@ -90,10 +88,9 @@
        msgOptions: MsgOptions(
          storage: true, // 消息是否存储
          unread: true, // 未读是否计数
+         updateConv: true, // 会话消息是否更新
        ),
      );
-     IMLiteCore.instance.sendMsg(
+     bool sendStatus = await IMLiteCore.instance.sendMsg(
        msg: msg,
-       onSuccess: (data) {},
-       onError: (error) {},
      );
