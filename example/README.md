@@ -34,13 +34,6 @@
          },
        ),
        receiveMsgListener: ReceiveMsgListener(
-         onPullMsg: (msgList) {
-           if (msgList != null) {
-             // 拉取消息列表
-           } else {
-             // 拉取消息错误
-           }
-         },
          onPushMsg: (msg) {
            // 推送消息
          },
@@ -71,7 +64,11 @@
      PullMsgList pullList = PullMsgList(
        list: [pull],
      );
-     IMLiteCore.instance.pullMsgList(pullList: pullList);
+     IMLiteCore.instance.pullMsgList(
+       pullList: pullList,
+       onSuccess: (msgList) {},
+       onError: (error) {},
+     );
 
 ## 发送消息
 
@@ -95,4 +92,8 @@
          unread: true, // 未读是否计数
        ),
      );
-     IMLiteCore.instance.sendMsg(msg: msg);
+     IMLiteCore.instance.sendMsg(
+       msg: msg,
+       onSuccess: (data) {},
+       onError: (error) {},
+     );

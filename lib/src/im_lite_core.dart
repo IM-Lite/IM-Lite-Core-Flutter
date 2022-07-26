@@ -27,14 +27,13 @@ class IMLiteCore {
     required String wsUrl,
     Duration autoPullTime = const Duration(seconds: 30),
     ConnectListener? connectListener,
-    ReceiveMsgListener? receiveMsgListener,
     ReceiveConvListener? receiveConvListener,
+    ReceiveMsgListener? receiveMsgListener,
   }) {
     _liteHttp = LiteHttp(
       apiUrl: apiUrl,
       autoPullTime: autoPullTime,
       receiveConvListener: receiveConvListener,
-      receiveMsgListener: receiveMsgListener,
     );
     _liteSocket = LiteSocket(
       liteHttp: _liteHttp!,
@@ -77,9 +76,13 @@ class IMLiteCore {
   /// 拉取消息
   void pullMsgList({
     required PullMsgList pullList,
+    Function(MsgDataList msgList)? onSuccess,
+    Function(String? error)? onError,
   }) {
     _liteHttp?.pullMsgList(
       pullList: pullList,
+      onSuccess: onSuccess,
+      onError: onError,
     );
   }
 
