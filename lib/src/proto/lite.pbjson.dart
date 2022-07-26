@@ -176,9 +176,10 @@ const MsgOptions$json = const {
   '2': const [
     const {'1': 'storage', '3': 1, '4': 1, '5': 8, '10': 'storage'},
     const {'1': 'unread', '3': 2, '4': 1, '5': 8, '10': 'unread'},
+    const {'1': 'updateConv', '3': 3, '4': 1, '5': 8, '10': 'updateConv'},
   ],
 };
 
 /// Descriptor for `MsgOptions`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List msgOptionsDescriptor = $convert.base64Decode(
-    'CgpNc2dPcHRpb25zEhgKB3N0b3JhZ2UYASABKAhSB3N0b3JhZ2USFgoGdW5yZWFkGAIgASgIUgZ1bnJlYWQ=');
+    'CgpNc2dPcHRpb25zEhgKB3N0b3JhZ2UYASABKAhSB3N0b3JhZ2USFgoGdW5yZWFkGAIgASgIUgZ1bnJlYWQSHgoKdXBkYXRlQ29udhgDIAEoCFIKdXBkYXRlQ29udg==');

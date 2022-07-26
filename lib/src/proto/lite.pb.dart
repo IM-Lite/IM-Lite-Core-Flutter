@@ -1075,6 +1075,12 @@ class MsgOptions extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'unread')
+    ..aOB(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'updateConv',
+        protoName: 'updateConv')
     ..hasRequiredFields = false;
 
   MsgOptions._() : super();
@@ -1082,6 +1088,7 @@ class MsgOptions extends $pb.GeneratedMessage {
   factory MsgOptions({
     $core.bool? storage,
     $core.bool? unread,
+    $core.bool? updateConv,
   }) {
     final _result = create();
     if (storage != null) {
@@ -1089,6 +1096,9 @@ class MsgOptions extends $pb.GeneratedMessage {
     }
     if (unread != null) {
       _result.unread = unread;
+    }
+    if (updateConv != null) {
+      _result.updateConv = updateConv;
     }
     return _result;
   }
@@ -1153,4 +1163,18 @@ class MsgOptions extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   void clearUnread() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.bool get updateConv => $_getBF(2);
+
+  @$pb.TagNumber(3)
+  set updateConv($core.bool v) {
+    $_setBool(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasUpdateConv() => $_has(2);
+
+  @$pb.TagNumber(3)
+  void clearUpdateConv() => clearField(3);
 }

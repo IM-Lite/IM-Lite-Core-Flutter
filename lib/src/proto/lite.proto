@@ -61,4 +61,5 @@ message OfflinePush{
 message MsgOptions{
   bool storage = 1;
   bool unread = 2;
+  bool updateConv = 3;
 }
