@@ -74,47 +74,36 @@ class IMLiteCore {
   }
 
   /// 拉取消息
-  void pullMsgList({
+  Future<MsgDataList?> pullMsgList({
     required PullMsgList pullList,
-    Function(MsgDataList msgList)? onSuccess,
-    Function(String? error)? onError,
-  }) {
-    _liteHttp?.pullMsgList(
+  }) async {
+    return await _liteHttp?.pullMsgList(
       pullList: pullList,
-      onSuccess: onSuccess,
-      onError: onError,
     );
   }
 
   /// 发送消息
-  void sendMsg({
+  Future<bool> sendMsg({
     required MsgData msg,
-    Function(dynamic data)? onSuccess,
-    Function(String? error)? onError,
-  }) {
-    _liteHttp?.sendMsg(
-      msg: msg,
-      onSuccess: onSuccess,
-      onError: onError,
-    );
+  }) async {
+    return await _liteHttp?.sendMsg(
+          msg: msg,
+        ) ??
+        false;
   }
 
   /// 发送请求
-  void request({
+  Future<dynamic> request({
     required String path,
     required String method,
     Map<String, dynamic>? query,
     dynamic data,
-    Function(dynamic data)? onSuccess,
-    Function(String? error)? onError,
-  }) {
-    _liteHttp?.request(
+  }) async {
+    return await _liteHttp?.request(
       path: path,
       method: method,
       query: query,
       data: data,
-      onSuccess: onSuccess,
-      onError: onError,
     );
   }
 }

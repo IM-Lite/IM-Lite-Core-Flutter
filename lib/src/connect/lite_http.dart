@@ -51,74 +51,58 @@ class LiteHttp {
   }
 
   void pullConvList() async {
-    request(
+    dynamic data = await request(
       path: Protocol.pullConvList,
       method: "post",
-      onSuccess: (data) {
-        ConvDataList convList = ConvDataList.fromBuffer(data);
-        receiveConvListener?.pullConv(convList);
-      },
-      onError: (error) {
-        receiveConvListener?.pullConv(null);
-      },
     );
+    if (data != null) {
+      ConvDataList convList = ConvDataList.fromBuffer(data);
+      receiveConvListener?.pullConv(convList);
+    } else {
+      receiveConvListener?.pullConv(null);
+    }
   }
 
-  void pullMsgList({
+  Future<MsgDataList?> pullMsgList({
     required PullMsgList pullList,
-    Function(MsgDataList msgList)? onSuccess,
-    Function(String? error)? onError,
   }) async {
     List<int> bytes = pullList.writeToBuffer();
-    request(
+    dynamic data = await request(
       path: Protocol.pullMsgList,
       method: "post",
       data: Stream.fromIterable(
         bytes.map((e) => [e]),
       ),
-      onSuccess: (data) {
-        MsgDataList msgList = MsgDataList.fromBuffer(data);
-        if (onSuccess != null) onSuccess(msgList);
-      },
-      onError: (error) {
-        if (onError != null) onError(error);
-      },
     );
+    if (data != null) {
+      return MsgDataList.fromBuffer(data);
+    }
+    return null;
   }
 
-  void sendMsg({
+  Future<bool> sendMsg({
     required MsgData msg,
-    Function(dynamic data)? onSuccess,
-    Function(String? error)? onError,
   }) async {
     List<int> bytes = msg.writeToBuffer();
-    request(
+    dynamic data = await request(
       path: Protocol.sendMsg,
       method: "post",
       data: Stream.fromIterable(
         bytes.map((e) => [e]),
       ),
-      onSuccess: (data) {
-        if (onSuccess != null) onSuccess(data);
-      },
-      onError: (error) {
-        if (onError != null) onError(error);
-      },
     );
+    return data != null;
   }
 
-  void request({
+  Future<dynamic> request({
     required String path,
     required String method,
     Map<String, dynamic>? query,
     dynamic data,
-    Function(dynamic data)? onSuccess,
-    Function(String? error)? onError,
   }) async {
-    if (!isConnect()) return;
-    Response? response;
+    if (!isConnect()) return null;
     try {
-      response = await _dio?.request(
+      Response? response = await _dio?.request(
         path,
         options: Options(
           method: method,
@@ -126,17 +110,10 @@ class LiteHttp {
         queryParameters: query,
         data: data,
       );
-      if (response != null) {
-        if (response.statusCode == 200) {
-          if (onSuccess != null) onSuccess(response.data);
-        } else {
-          if (onError != null) onError(response.statusMessage);
-        }
-      } else {
-        if (onError != null) onError(null);
+      if (response != null && response.statusCode == 200) {
+        return response.data;
       }
-    } catch (e) {
-      if (onError != null) onError(null);
-    }
+    } catch (_) {}
+    return null;
   }
 }

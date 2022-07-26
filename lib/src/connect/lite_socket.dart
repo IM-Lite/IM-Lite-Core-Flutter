@@ -42,18 +42,19 @@ class LiteSocket {
         await disconnect();
         connectListener?.close();
       },
-    )..connect(
-        url: Uri.decodeFull(
-          Uri(
-            path: wsUrl,
-            queryParameters: {
-              "token": token,
-              "userID": userID,
-              "platform": Protocol.getPlatform(),
-            },
-          ).toString(),
-        ),
-      );
+    );
+    await _webSocket!.connect(
+      url: Uri.decodeFull(
+        Uri(
+          path: wsUrl,
+          queryParameters: {
+            "token": token,
+            "userID": userID,
+            "platform": Protocol.getPlatform(),
+          },
+        ).toString(),
+      ),
+    );
   }
 
   Future disconnect() async {

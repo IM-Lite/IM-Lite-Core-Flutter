@@ -43,9 +43,4 @@ class BaseWebSocket {
   bool isConnect() {
     return _webSocket != null;
   }
-
-  void sendData(dynamic data) {
-    if (!isConnect()) return;
-    _webSocket?.add(data);
-  }
 }

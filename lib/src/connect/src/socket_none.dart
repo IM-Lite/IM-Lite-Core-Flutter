@@ -26,8 +26,4 @@ class BaseWebSocket {
   bool isConnect() {
     throw "To use socket you need dart:io or dart:html";
   }
-
-  void sendData(dynamic data) {
-    throw "To use socket you need dart:io or dart:html";
-  }
 }
