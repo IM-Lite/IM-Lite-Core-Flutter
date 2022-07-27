@@ -64,7 +64,7 @@
      PullMsgList pullList = PullMsgList(
        list: [pull],
      );
-     MsgDataList? msgDataList = await IMLiteCore.instance.pullMsgList(
+     IMLiteCore.instance.pullMsgList(
        pullList: pullList,
      );
 
@@ -91,6 +91,6 @@
          updateConv: true, // 会话消息是否更新
        ),
      );
-     bool sendStatus = await IMLiteCore.instance.sendMsg(
+     IMLiteCore.instance.sendMsg(
        msg: msg,
      );
