@@ -149,6 +149,12 @@ class ConvData extends $pb.GeneratedMessage {
             : 'minSeq',
         $pb.PbFieldType.OU3,
         protoName: 'minSeq')
+    ..aOB(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'isPinned',
+        protoName: 'isPinned')
     ..hasRequiredFields = false;
 
   ConvData._() : super();
@@ -157,6 +163,7 @@ class ConvData extends $pb.GeneratedMessage {
     $core.String? convID,
     $core.int? maxSeq,
     $core.int? minSeq,
+    $core.bool? isPinned,
   }) {
     final _result = create();
     if (convID != null) {
@@ -167,6 +174,9 @@ class ConvData extends $pb.GeneratedMessage {
     }
     if (minSeq != null) {
       _result.minSeq = minSeq;
+    }
+    if (isPinned != null) {
+      _result.isPinned = isPinned;
     }
     return _result;
   }
@@ -245,6 +255,20 @@ class ConvData extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   void clearMinSeq() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get isPinned => $_getBF(3);
+
+  @$pb.TagNumber(4)
+  set isPinned($core.bool v) {
+    $_setBool(3, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasIsPinned() => $_has(3);
+
+  @$pb.TagNumber(4)
+  void clearIsPinned() => clearField(4);
 }
 
 class ConvDataList extends $pb.GeneratedMessage {

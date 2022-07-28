@@ -47,12 +47,13 @@ const ConvData$json = const {
     const {'1': 'convID', '3': 1, '4': 1, '5': 9, '10': 'convID'},
     const {'1': 'maxSeq', '3': 2, '4': 1, '5': 13, '10': 'maxSeq'},
     const {'1': 'minSeq', '3': 3, '4': 1, '5': 13, '10': 'minSeq'},
+    const {'1': 'isPinned', '3': 4, '4': 1, '5': 8, '10': 'isPinned'},
   ],
 };
 
 /// Descriptor for `ConvData`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List convDataDescriptor = $convert.base64Decode(
-    'CghDb252RGF0YRIWCgZjb252SUQYASABKAlSBmNvbnZJRBIWCgZtYXhTZXEYAiABKA1SBm1heFNlcRIWCgZtaW5TZXEYAyABKA1SBm1pblNlcQ==');
+    'CghDb252RGF0YRIWCgZjb252SUQYASABKAlSBmNvbnZJRBIWCgZtYXhTZXEYAiABKA1SBm1heFNlcRIWCgZtaW5TZXEYAyABKA1SBm1pblNlcRIaCghpc1Bpbm5lZBgEIAEoCFIIaXNQaW5uZWQ=');
 @$core.Deprecated('Use convDataListDescriptor instead')
 const ConvDataList$json = const {
   '1': 'ConvDataList',
